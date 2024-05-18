@@ -32,8 +32,13 @@ function DiaryDetailModal({ userId }: DiaryDetailModalProps) {
         width="100vw"
         style={{ backgroundColor: 'rgba(47, 47, 47)' }}
       >
-        <DiaryDetailHeader userId={userId} />
-        <DiaryDetailList userId={userId} />
+        <Box
+          maxWidth={800}
+          marginHorizontal="auto"
+        >
+          <DiaryDetailHeader userId={userId} />
+          <DiaryDetailList userId={userId} />
+        </Box>
       </Box>
     </Overlay>
   )
