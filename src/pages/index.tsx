@@ -34,7 +34,7 @@ export default function Page() {
         </Link>
 
         <Link
-          href="/auth/sign-up"
+          href="/auth/sign-in"
           legacyBehavior
         >
           <Button
