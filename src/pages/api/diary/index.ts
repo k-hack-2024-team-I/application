@@ -3,6 +3,10 @@ import { supabase } from '@/supabase/server'
 import { generateThumbnail } from '@/features/diary/utils/generateThumbnail'
 import type { UserGender } from '@/features/user/constants/constants'
 
+export const config = {
+  maxDuration: 300,
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
