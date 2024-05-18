@@ -21,7 +21,7 @@ export default function Page() {
         <Text color="txt-black-darker">쉽고 재미있게 일상을 기록하세요</Text>
 
         <Link
-          href="/diary/create-user"
+          href="/auth/sign-up"
           legacyBehavior
         >
           <Button
@@ -34,7 +34,7 @@ export default function Page() {
         </Link>
 
         <Link
-          href="/diary/find-user"
+          href="/auth/sign-up"
           legacyBehavior
         >
           <Button
