@@ -1,4 +1,4 @@
-import { Box, Center, Spinner } from '@channel.io/bezier-react'
+import { Box, Center, Spinner, Text } from '@channel.io/bezier-react'
 import NiceModal from '@ebay/nice-modal-react'
 import { Suspense } from 'react'
 import Image from 'next/image'
@@ -15,6 +15,14 @@ function List({ userId }: ListProps) {
 
   if (userId === undefined) {
     return null
+  }
+
+  if (data.length === 0) {
+    return (
+      <Center height={300}>
+        <Text color="txt-black-dark">일기가 없습니다 :0...</Text>
+      </Center>
+    )
   }
 
   return (
