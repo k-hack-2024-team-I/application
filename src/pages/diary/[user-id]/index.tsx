@@ -13,12 +13,18 @@ import {
   TabItems,
   TabContent,
 } from '@channel.io/bezier-react'
-import type { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import NiceModal from '@ebay/nice-modal-react'
+import { useRouter } from 'next/router'
+import assert from 'assert'
 import { BasicLayout } from '@/layout/BasicLayout'
+import { DiaryDetailModal } from '@/features/diary/components/DiaryDetail'
 
 export default function Page() {
+  const { 'user-id': userId } = useRouter().query
+  assert(!userId || typeof userId === 'string', 'userId must be a valid string')
+
   return (
     <VStack>
       <HStack
@@ -170,9 +176,10 @@ export default function Page() {
               }}
             >
               {[...Array(9)].map((_, index) => (
-                <Link
+                <Box
                   key={index}
-                  href={`/diary/user-id/123456`}
+                  as="button"
+                  onClick={() => NiceModal.show(DiaryDetailModal, { userId })}
                 >
                   <Image
                     style={{
@@ -185,7 +192,7 @@ export default function Page() {
                     height={300}
                     alt=""
                   />
-                </Link>
+                </Box>
               ))}
             </Box>
           </TabContent>
