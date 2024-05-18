@@ -34,7 +34,7 @@ export function AvatarUploader({
 
       const response = await supabase.storage
         .from('avatars')
-        .upload(`${+Date.now()}-${files[0].name}`, files[0])
+        .upload(`${+Date.now()}-${encodeURIComponent(files[0].name)}`, files[0])
 
       assert(response.data?.path, 'Failed to upload image')
       setDisplayAvatarUploaderOverlay(false)
