@@ -36,7 +36,9 @@ export async function generateThumbnail(
   assert(data[0].b64_json, 'Failed to generate a thumbnail')
   const path = await supabase.storage
     .from('thumbnails')
-    .upload(`${+Date.now()}.png`, Buffer.from(data[0].b64_json, 'base64'))
+    .upload(`${+Date.now()}.png`, Buffer.from(data[0].b64_json, 'base64'), {
+      contentType: 'image/png',
+    })
     .then((response) => response.data?.path)
 
   return {

@@ -20,7 +20,6 @@ export default async function handler(
         return res.status(401).json({ error: 'Unauthorized' })
       }
 
-      // TODO(@nabi-chan): Implement this
       const { path: thumbnailUrl, alt } = await generateThumbnail(
         {
           age: response.user_metadata.age,
