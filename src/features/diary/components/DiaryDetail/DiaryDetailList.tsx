@@ -9,12 +9,12 @@ import {
   Text,
   Center,
   Spinner,
+  Avatar,
 } from '@channel.io/bezier-react'
 import Image from 'next/image'
 import { useGetDiariesQueryObject } from '@/features/diary/queries/useGetDiariesQueryObject'
 import { SSRSafeSuspense } from '@/components/SSRSafeSuspense'
 import { useGetUserQueryObject } from '@/features/user/queries/useGetUserQueryObject'
-import { Avatar } from '@/components/Avatar'
 
 interface DiaryDetailProps {
   userId: string

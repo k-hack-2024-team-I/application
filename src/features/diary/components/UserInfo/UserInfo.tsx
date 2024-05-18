@@ -1,9 +1,15 @@
-import { Center, HStack, Spinner, VStack, Text } from '@channel.io/bezier-react'
+import {
+  Center,
+  HStack,
+  Spinner,
+  VStack,
+  Text,
+  Avatar,
+} from '@channel.io/bezier-react'
 import { useSuspenseQueries } from '@tanstack/react-query'
 import { useGetUserQueryObject } from '@/features/user/queries/useGetUserQueryObject'
 import { SSRSafeSuspense } from '@/components/SSRSafeSuspense'
 import { useGetDiariesStatQueryObject } from '@/features/diary/queries/useGetDiariesStatQueryObject'
-import { Avatar } from '@/components/Avatar'
 
 interface UserInfoProps {
   userId: string
