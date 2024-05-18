@@ -60,7 +60,7 @@ export default function SuspenseList(props: ListProps) {
   return (
     <Suspense
       fallback={
-        <Center height={300}>
+        <Center height={128}>
           <Spinner color="txt-black-darker" />
         </Center>
       }
