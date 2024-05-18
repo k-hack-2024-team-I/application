@@ -15,18 +15,27 @@ export type Database = {
           content: string | null
           created_at: string | null
           id: string
+          mood: string | null
+          mood_score: number | null
+          thumbnail_url: string | null
         }
         Insert: {
           author?: string | null
           content?: string | null
           created_at?: string | null
           id?: string
+          mood?: string | null
+          mood_score?: number | null
+          thumbnail_url?: string | null
         }
         Update: {
           author?: string | null
           content?: string | null
           created_at?: string | null
           id?: string
+          mood?: string | null
+          mood_score?: number | null
+          thumbnail_url?: string | null
         }
         Relationships: []
       }
