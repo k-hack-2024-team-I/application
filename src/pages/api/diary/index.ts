@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { supabase } from '@/supabase/server'
 import { generateThumbnail } from '@/features/diary/utils/generateThumbnail'
 import type { UserGender } from '@/features/user/constants/constants'
+import { getUserMood } from '@/features/diary/utils/getUserMood'
 
 export const config = {
   maxDuration: 300,
@@ -32,11 +33,13 @@ export default async function handler(
         content
       )
 
-      // TODO(@nabi-chan): Implement this
-      const mood = '기쁨'
-
-      // TODO(@nabi-chan): Implement this
-      const moodScore = 10
+      const { mood, score: moodScore } = await getUserMood(
+        {
+          age: response.user_metadata.age,
+          gender: response.user_metadata.gender as UserGender,
+        },
+        content
+      )
 
       const { data, error } = await supabase
         .from('diary')
