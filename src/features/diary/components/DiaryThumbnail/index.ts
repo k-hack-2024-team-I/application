@@ -1,0 +1,1 @@
+export { DiaryThumbnail } from './DiaryThumbnail'

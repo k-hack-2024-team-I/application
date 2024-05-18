@@ -8,8 +8,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-        pathname: '/u/*',
+        hostname: 'hfokuhoievsxeyuxtzkv.supabase.co',
+        pathname: '/storage/v1/object/sign/thumbnails/*',
       },
     ],
   },
