@@ -105,12 +105,7 @@ export function Item({ diary, user }: ItemProps) {
             {user.username}
           </Text>
           <Box>
-            <Text
-              truncated={5}
-              marginBottom={1}
-            >
-              {diary.content}
-            </Text>
+            <Text style={{ whiteSpace: 'pre-wrap' }}>{diary.content}</Text>
           </Box>
           <Text
             typo="14"
