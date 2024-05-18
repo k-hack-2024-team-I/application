@@ -16,11 +16,11 @@ export default async function handler(
         return res.status(404).json({ error: 'User not found' })
       }
 
-      const { username, avatarUrl, description, gender } =
+      const { username, avatar_url, description, gender } =
         data.user.user_metadata
 
       return res.status(200).json({
-        avatarUrl,
+        avatarUrl: avatar_url,
         username,
         description,
         gender,
