@@ -69,7 +69,10 @@ export default function Page({
       <UserModify userId={userId} />
 
       <Box paddingTop={16}>
-        <Tabs value="diary">
+        <Tabs
+          defaultValue="diary"
+          activationMode="automatic"
+        >
           <TabList>
             <TabItems style={{ width: '100%' }}>
               <TabItem
