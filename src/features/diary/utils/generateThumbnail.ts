@@ -5,21 +5,22 @@ import type { UserGender } from '@/features/user/constants/constants'
 import { UserGenderLabels } from '@/features/user/constants/constants'
 
 const getPrompt = (
-  context: { age: number; gender: UserGender },
+  context: { age: number; gender: UserGender; additionalContext?: string },
   content: string
 ) => `다음 조건에 맞는 그림을 그려주세요.
 - 어린아이가 그린것처럼 단순하고 귀엽게 그려주세요.
 - 굵은 크레용으로 그린것처럼 그림을 그려주세요.
 - 크레용 또는 글자를 포함하지 말아주세요.
 - 이 말을 하는 화자는 ${context.age}세이며, 성별은 ${UserGenderLabels[context.gender]}입니다.
-- 어떠한 글자도 쓰지 말아주세요.
+- 또한, 이 말을 하는 화자는 ${context.additionalContext?.replace('\n', ' ')} 라고 자신의 모습을 표현하고 있습니다.
+- 영어, 한국어를 포함해 어떠한 글자도 그림에 포함하지 말아주세요.
 
 상황은 다음과 같습니다.
 ${content}
 `
 
 export async function generateThumbnail(
-  context: { age: number; gender: UserGender },
+  context: { age: number; gender: UserGender; gptContext?: string },
   content: string
 ) {
   const { data } = await openai.images.generate({

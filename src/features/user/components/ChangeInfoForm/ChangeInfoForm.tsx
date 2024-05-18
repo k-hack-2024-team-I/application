@@ -13,6 +13,8 @@ import {
   Text,
   Spinner,
   Center,
+  Divider,
+  FormHelperText,
 } from '@channel.io/bezier-react'
 import { useFormik } from 'formik'
 import { useRef } from 'react'
@@ -49,6 +51,7 @@ export function ChangeInfoForm() {
       username: (data?.user_metadata.username ?? '') as string,
       description: (data?.user_metadata.description ?? '') as string,
       age: (data?.user_metadata.age ?? '') as string,
+      gptContext: (data?.user_metadata.gpt_context ?? '') as string,
       gender: data?.user_metadata.gender as UserGender,
     },
     validateOnChange: false,
@@ -68,6 +71,7 @@ export function ChangeInfoForm() {
         description: value.description,
         username: value.username,
         gender: value.gender,
+        gptContext: value.gptContext,
       })
       assert(user, 'user should be defined')
       resetForm({
@@ -77,6 +81,7 @@ export function ChangeInfoForm() {
           description: user.user_metadata.description,
           age: user.user_metadata.age,
           gender: user.user_metadata.gender,
+          gptContext: user.user_metadata.gpt_context,
         },
       })
     },
@@ -118,6 +123,8 @@ export function ChangeInfoForm() {
           />
           <FormErrorMessage>{errors.description}</FormErrorMessage>
         </FormControl>
+
+        <Divider />
 
         <FormControl hasError={!!errors.age}>
           <FormLabel>당신은 몇살인가요?</FormLabel>
@@ -169,6 +176,21 @@ export function ChangeInfoForm() {
           </Select>
           <FormErrorMessage>{errors.gender}</FormErrorMessage>
         </FormControl>
+
+        <FormControl hasError={!!errors.gptContext}>
+          <FormLabel>당신이 생각하는 당신의 모습을 알려주세요.</FormLabel>
+          <TextArea
+            name="gptContext"
+            placeholder="당신의 외향적인 모습이나 자주 입는 옷들을 적어주세요"
+            value={values.gptContext}
+            onChange={handleChange}
+          />
+          <FormErrorMessage>{errors.gptContext}</FormErrorMessage>
+          <FormHelperText>
+            인공지능이 썸네일을 만들때 이 문장을 참고해 당신의 모습을 그립니다.
+          </FormHelperText>
+        </FormControl>
+
         {dirty && (
           <ButtonGroup justify="start">
             <Button

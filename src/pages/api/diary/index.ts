@@ -29,6 +29,7 @@ export default async function handler(
         {
           age: response.user_metadata.age,
           gender: response.user_metadata.gender as UserGender,
+          gptContext: response.user_metadata.gpt_context,
         },
         content
       )

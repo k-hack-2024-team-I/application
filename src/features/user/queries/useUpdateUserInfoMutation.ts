@@ -15,11 +15,13 @@ export function useUpdateUserInfoMutation() {
       description,
       username,
       gender,
+      gptContext,
     }: {
       avatarUrl?: string
       username?: string
       description?: string
       age?: string
+      gptContext?: string
       gender?: UserGender
     }) =>
       supabase.auth
@@ -31,6 +33,7 @@ export function useUpdateUserInfoMutation() {
               description,
               username,
               gender,
+              gpt_context: gptContext,
             },
             (value) => isEmpty(value)
           ),
