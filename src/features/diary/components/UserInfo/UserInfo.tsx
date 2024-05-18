@@ -6,16 +6,22 @@ import {
   VStack,
   Text,
 } from '@channel.io/bezier-react'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useSuspenseQueries } from '@tanstack/react-query'
 import { useGetUserQueryObject } from '@/features/user/queries/useGetUserQueryObject'
 import { SSRSafeSuspense } from '@/components/SSRSafeSuspense'
+import { useGetDiariesStatQueryObject } from '@/features/diary/queries/useGetDiariesStatQueryObject'
 
 interface UserInfoProps {
   userId: string
 }
 
 export function UserInfo({ userId }: UserInfoProps) {
-  const { data } = useSuspenseQuery(useGetUserQueryObject(userId))
+  const [{ data: userInfo }, { data: statics }] = useSuspenseQueries({
+    queries: [
+      useGetUserQueryObject(userId),
+      useGetDiariesStatQueryObject(userId),
+    ],
+  })
 
   return (
     <VStack>
@@ -27,7 +33,7 @@ export function UserInfo({ userId }: UserInfoProps) {
       >
         <Avatar
           name="UserProfilePic"
-          avatarUrl={data.avatarUrl}
+          avatarUrl={userInfo.avatarUrl}
           size="90"
         />
 
@@ -35,9 +41,8 @@ export function UserInfo({ userId }: UserInfoProps) {
           spacing={32}
           paddingRight={24}
         >
-          {/* TODO(@nabi-chan): 일기 카운트 */}
           <VStack align="center">
-            <Text bold>310</Text>
+            <Text bold>{statics.count}</Text>
             <Text>일기</Text>
           </VStack>
 
@@ -68,13 +73,13 @@ export function UserInfo({ userId }: UserInfoProps) {
             truncated
             bold
           >
-            {data.username}
+            {userInfo.username}
           </Text>
           <Text
             typo="14"
             color="txt-black-dark"
           >
-            {data.gender}
+            {userInfo.gender}
           </Text>
         </HStack>
         <Text
@@ -82,7 +87,7 @@ export function UserInfo({ userId }: UserInfoProps) {
           color="txt-black-darker"
           truncated={3}
         >
-          {data.description}
+          {userInfo.description}
         </Text>
       </VStack>
     </VStack>
