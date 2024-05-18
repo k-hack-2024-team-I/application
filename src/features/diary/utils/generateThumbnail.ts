@@ -12,10 +12,11 @@ const getPrompt = (
   context: { age: number; gender: UserGender },
   content: string
 ) => `다음 조건에 맞는 그림을 그려주세요.
-- 최대한 어린아이가 그린것처럼 단순하게 그려주세요.
+- 어린아이가 그린것처럼 단순하고 귀엽게 그려주세요.
 - 그림의 스타일은 크레용으로 그린것처럼 그려주세요.
+- 겉에 크레용을 그리지 않아도 됩니다.
 - 이 말을 하는 화자는 ${context.age}세이며, 성별은 ${UserGenderLabels[context.gender]}입니다.
-- 한국어 글자를 쓰지 말아주세요.
+- 글자를 쓰지 말아주세요.
 
 상황은 다음과 같습니다.
 ${content}
