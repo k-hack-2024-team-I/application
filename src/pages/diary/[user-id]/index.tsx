@@ -5,7 +5,6 @@ import {
   Text,
   ButtonGroup,
   Button,
-  Avatar,
   Box,
   Tabs,
   TabList,
@@ -17,6 +16,8 @@ import { type ReactNode } from 'react'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { BasicLayout } from '@/layout/BasicLayout'
 import { List } from '@/features/diary/components/List'
+import UserInfo from '@/features/diary/components/UserInfo'
+import UserModify from '@/features/diary/components/UserModify'
 
 export const getServerSideProps = (async (context) => ({
   props: { 'user-id': context.query['user-id'] as string },
@@ -63,91 +64,10 @@ export default function Page({
           />
         </ButtonGroup>
       </HStack>
-      <HStack
-        as="header"
-        align="center"
-        justify="between"
-        paddingHorizontal={16}
-      >
-        <Avatar
-          name="UserProfilePic"
-          avatarUrl="https://avatars.githubusercontent.com/u/42037851?v=4"
-          size="90"
-        />
 
-        <HStack
-          spacing={32}
-          paddingRight={24}
-        >
-          {/* TODO(@nabi-chan): 일기 카운트 */}
-          <VStack align="center">
-            <Text bold>310</Text>
-            <Text>일기</Text>
-          </VStack>
+      <UserInfo userId={userId} />
+      <UserModify userId={userId} />
 
-          {/* TODO(@nabi-chan): 팔로워 카운트 */}
-          <VStack align="center">
-            <Text bold>0</Text>
-            <Text>팔로잉</Text>
-          </VStack>
-
-          {/* TODO(@nabi-chan): 팔로잉 카운트 */}
-          <VStack align="center">
-            <Text bold>0</Text>
-            <Text>팔로워</Text>
-          </VStack>
-        </HStack>
-      </HStack>
-      <VStack
-        as="aside"
-        paddingTop={16}
-        paddingHorizontal={16}
-      >
-        <HStack
-          spacing={8}
-          align="center"
-        >
-          <Text
-            typo="16"
-            truncated
-            bold
-          >
-            유저의 이름유저의 이름유저의 이름유저의 이름유저의 이름유저의
-            이름유저의 이름유저의 이름유저의 이름유저의 이름유저의 이름
-          </Text>
-          <Text
-            typo="14"
-            color="txt-black-dark"
-          >
-            she/her
-          </Text>
-        </HStack>
-        <Text
-          typo="16"
-          color="txt-black-darker"
-          truncated={3}
-        >
-          당신을 나타내는 한마디를 입력해보세요. 당신을 나타내는 한마디를
-          입력해보세요. 당신을 나타내는 한마디를 입력해보세요. 당신을 나타내는
-          한마디를 입력해보세요. 당신을 나타내는 한마디를 입력해보세요. 당신을
-          나타내는 한마디를 입력해보세요. 당신을 나타내는 한마디를 입력해보세요.
-          당신을 나타내는 한마디를 입력해보세요. 당신을 나타내는 한마디를
-          입력해보세요.
-        </Text>
-      </VStack>
-      <Box
-        paddingTop={16}
-        paddingHorizontal={16}
-      >
-        <ButtonGroup justify="start">
-          <Button
-            style={{ flex: 1 }}
-            styleVariant="secondary"
-            colorVariant="monochrome-dark"
-            text="프로필 수정하기"
-          />
-        </ButtonGroup>
-      </Box>
       <Box paddingTop={16}>
         <Tabs value="diary">
           <TabList>
