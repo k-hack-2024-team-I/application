@@ -12,7 +12,6 @@ export type UserMetadata = {
 export function useGetUserQueryObject(userId: string) {
   return {
     queryKey: ['user', userId],
-    queryFn: async () =>
-      axios.get<UserMetadata>(`/user/${userId}`).then((res) => res.data),
+    queryFn: async () => axios.get<UserMetadata>(`/user/${userId}`),
   } satisfies QueryOptions
 }
