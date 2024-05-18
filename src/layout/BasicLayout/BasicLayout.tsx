@@ -5,6 +5,7 @@ export function BasicLayout({ children }: PropsWithChildren) {
   return (
     <Box
       maxWidth={800}
+      width="100%"
       marginHorizontal="auto"
     >
       {children}
