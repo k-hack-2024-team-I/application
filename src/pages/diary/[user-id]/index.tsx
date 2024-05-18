@@ -14,6 +14,7 @@ import {
 } from '@channel.io/bezier-react'
 import { type ReactNode } from 'react'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import Link from 'next/link'
 import { BasicLayout } from '@/layout/BasicLayout'
 import { List } from '@/features/diary/components/List'
 import UserInfo from '@/features/diary/components/UserInfo'
@@ -50,12 +51,17 @@ export default function Page({
         </Text>
 
         <ButtonGroup>
-          <Button
-            size="l"
-            leftContent={NoteWritingIcon}
-            colorVariant="monochrome-dark"
-            styleVariant="tertiary"
-          />
+          <Link
+            href="/diary/create"
+            legacyBehavior
+          >
+            <Button
+              size="l"
+              leftContent={NoteWritingIcon}
+              colorVariant="monochrome-dark"
+              styleVariant="tertiary"
+            />
+          </Link>
           <Button
             size="l"
             leftContent={MenuIcon}
