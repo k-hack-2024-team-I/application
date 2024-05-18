@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { supabase } from '@/supabase/server'
+import { generateThumbnail } from '@/features/diary/utils/generateThumbnail'
+import type { UserGender } from '@/features/user/constants/constants'
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,16 +12,22 @@ export default async function handler(
       const { content } = req.body
       const [, accessToken] = req.headers.authorization?.split(' ') ?? []
 
-      const author = await supabase.auth
+      const response = await supabase.auth
         .getUser(accessToken)
-        .then((response) => response.data.user?.id)
+        .then((response) => response.data.user!)
 
-      if (!author) {
+      if (!response.id) {
         return res.status(401).json({ error: 'Unauthorized' })
       }
 
       // TODO(@nabi-chan): Implement this
-      const thumbnailUrl = ''
+      const { path: thumbnailUrl, alt } = await generateThumbnail(
+        {
+          age: response.user_metadata.age,
+          gender: response.user_metadata.gender as UserGender,
+        },
+        content
+      )
 
       // TODO(@nabi-chan): Implement this
       const mood = '기쁨'
@@ -33,8 +41,9 @@ export default async function handler(
           mood,
           content,
           thumbnail_url: thumbnailUrl,
+          thumbnail_alt: alt,
           mood_score: moodScore,
-          author,
+          author: response.id,
         })
         .select('id')
         .single()
