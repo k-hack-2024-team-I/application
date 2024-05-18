@@ -14,17 +14,17 @@ import {
   TabContent,
 } from '@channel.io/bezier-react'
 import { type ReactNode } from 'react'
-import Image from 'next/image'
-import NiceModal from '@ebay/nice-modal-react'
-import { useRouter } from 'next/router'
-import assert from 'assert'
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { BasicLayout } from '@/layout/BasicLayout'
-import { DiaryDetailModal } from '@/features/diary/components/DiaryDetail'
+import { List } from '@/features/diary/components/List'
 
-export default function Page() {
-  const { 'user-id': userId } = useRouter().query
-  assert(!userId || typeof userId === 'string', 'userId must be a valid string')
+export const getServerSideProps = (async (context) => ({
+  props: { 'user-id': context.query['user-id'] as string },
+})) satisfies GetServerSideProps
 
+export default function Page({
+  'user-id': userId,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <VStack>
       <HStack
@@ -168,33 +168,7 @@ export default function Page() {
           </TabList>
 
           <TabContent value="diary">
-            <Box
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: 2,
-              }}
-            >
-              {[...Array(9)].map((_, index) => (
-                <Box
-                  key={index}
-                  as="button"
-                  onClick={() => NiceModal.show(DiaryDetailModal, { userId })}
-                >
-                  <Image
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      aspectRatio: '1 / 1',
-                    }}
-                    src="https://avatars.githubusercontent.com/u/1234?v=4"
-                    width={300}
-                    height={300}
-                    alt=""
-                  />
-                </Box>
-              ))}
-            </Box>
+            <List userId={userId} />
           </TabContent>
           <TabContent value="mood_chart" />
         </Tabs>
