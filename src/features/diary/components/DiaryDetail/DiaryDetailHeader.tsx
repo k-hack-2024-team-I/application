@@ -23,7 +23,7 @@ export function DiaryDetailHeader({ userId }: DiaryDetailHeaderProps) {
       left={0}
       paddingVertical={8}
       paddingHorizontal={16}
-      zIndex="floating"
+      zIndex="important"
       style={{
         backgroundColor: 'rgba(47, 47, 47)',
       }}

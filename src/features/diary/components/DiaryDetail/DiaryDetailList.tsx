@@ -1,20 +1,9 @@
 import { useSuspenseQueries } from '@tanstack/react-query'
-import { MenuIcon } from '@channel.io/bezier-icons'
-import {
-  VStack,
-  HStack,
-  Button,
-  Box,
-  Divider,
-  Text,
-  Center,
-  Spinner,
-  Avatar,
-} from '@channel.io/bezier-react'
+import { VStack, Center, Spinner } from '@channel.io/bezier-react'
 import { useGetDiariesQueryObject } from '@/features/diary/queries/useGetDiariesQueryObject'
 import { SSRSafeSuspense } from '@/components/SSRSafeSuspense'
 import { useGetUserQueryObject } from '@/features/user/queries/useGetUserQueryObject'
-import { DiaryThumbnail } from '@/features/diary/components/DiaryThumbnail'
+import { Item } from './Item'
 
 interface DiaryDetailProps {
   userId: string
@@ -28,69 +17,11 @@ export function DiaryDetailList({ userId }: DiaryDetailProps) {
   return (
     <VStack spacing={4}>
       {diarys.map((diary) => (
-        <VStack key={diary.id}>
-          <HStack
-            align="center"
-            justify="between"
-            paddingVertical={8}
-            paddingHorizontal={16}
-          >
-            <HStack
-              align="center"
-              spacing={16}
-            >
-              <Avatar
-                name="user-profile-pic"
-                avatarUrl={user.avatarUrl}
-                size="36"
-              />
-              <Text bold>{user.username}</Text>
-            </HStack>
-
-            <Button
-              colorVariant="monochrome-dark"
-              styleVariant="tertiary"
-              leftContent={MenuIcon}
-            />
-          </HStack>
-
-          <DiaryThumbnail
-            style={{ width: '100%', height: '100%' }}
-            imageKey={diary.thumbnail_url!}
-            alt="diary-image"
-            width={800}
-            height={800}
-            quality={100}
-          />
-
-          <VStack
-            spacing={8}
-            paddingVertical={16}
-            paddingHorizontal={16}
-          >
-            <Text
-              typo="16"
-              bold
-            >
-              {user.username}
-            </Text>
-            <Box>
-              <Text
-                truncated={5}
-                marginBottom={1}
-              >
-                {diary.content}
-              </Text>
-            </Box>
-            <Text
-              typo="14"
-              color="txt-black-dark"
-            >
-              {diary.created_at}
-            </Text>
-          </VStack>
-          <Divider />
-        </VStack>
+        <Item
+          key={diary.id}
+          diary={diary}
+          user={user}
+        />
       ))}
     </VStack>
   )
