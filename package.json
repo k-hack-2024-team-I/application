@@ -20,6 +20,7 @@
     "@tanstack/react-query": "^5.36.2",
     "axios": "^1.6.8",
     "body-scroll-lock": "^4.0.0-beta.0",
+    "date-fns": "^3.6.0",
     "formik": "^2.4.6",
     "google-auth-library": "^9.10.0",
     "lodash-es": "^4.17.21",
@@ -28,6 +29,7 @@
     "openai": "^4.47.1",
     "react": "^18",
     "react-dom": "^18",
+    "recharts": "^2.12.7",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {

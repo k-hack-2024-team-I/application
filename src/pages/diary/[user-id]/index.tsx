@@ -12,13 +12,14 @@ import {
   TabItems,
   TabContent,
 } from '@channel.io/bezier-react'
-import { type ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Link from 'next/link'
 import { BasicLayout } from '@/layout/BasicLayout'
 import { List } from '@/features/diary/components/List'
 import UserInfo from '@/features/diary/components/UserInfo'
 import UserModify from '@/features/diary/components/UserModify'
+import MoodChart from '@/features/diary/components/MoodChart'
 
 export const getServerSideProps = (async (context) => ({
   props: { 'user-id': context.query['user-id'] as string },
@@ -27,6 +28,8 @@ export const getServerSideProps = (async (context) => ({
 export default function Page({
   'user-id': userId,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const endDate = useMemo(() => new Date(), [])
+
   return (
     <VStack>
       <HStack
@@ -99,7 +102,17 @@ export default function Page({
           <TabContent value="diary">
             <List userId={userId} />
           </TabContent>
-          <TabContent value="mood_chart" />
+          <TabContent value="mood_chart">
+            <Box
+              height={300}
+              paddingVertical={24}
+            >
+              <MoodChart
+                userId={userId}
+                endDate={endDate}
+              />
+            </Box>
+          </TabContent>
         </Tabs>
       </Box>
     </VStack>
