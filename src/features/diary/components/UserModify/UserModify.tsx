@@ -1,5 +1,6 @@
 import { Box, ButtonGroup, Button } from '@channel.io/bezier-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import Link from 'next/link'
 import { useGetThisUserQueryObject } from '@/features/user/queries/useGetThisUserQueryObject'
 import { SSRSafeSuspense } from '@/components/SSRSafeSuspense'
 
@@ -20,12 +21,17 @@ export function UserModify({ userId }: UserModifyProps) {
       paddingHorizontal={16}
     >
       <ButtonGroup justify="start">
-        <Button
-          style={{ flex: 1 }}
-          styleVariant="secondary"
-          colorVariant="monochrome-dark"
-          text="프로필 수정하기"
-        />
+        <Link
+          href="/user"
+          legacyBehavior
+        >
+          <Button
+            style={{ flex: 1 }}
+            styleVariant="secondary"
+            colorVariant="monochrome-dark"
+            text="프로필 수정하기"
+          />
+        </Link>
       </ButtonGroup>
     </Box>
   )
