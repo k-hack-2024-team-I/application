@@ -1,12 +1,8 @@
-import OpenAI from 'openai'
 import assert from 'assert'
+import { openai } from '@/utils/openai'
 import { supabase } from '@/supabase/server'
 import type { UserGender } from '@/features/user/constants/constants'
 import { UserGenderLabels } from '@/features/user/constants/constants'
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
 
 const getPrompt = (
   context: { age: number; gender: UserGender },
