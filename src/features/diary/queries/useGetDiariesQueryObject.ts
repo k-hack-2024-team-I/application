@@ -7,7 +7,7 @@ export function useGetDiariesQueryObject(userId: string) {
     queryFn: async () =>
       supabase
         .from('diary')
-        .select('id, content, created_at')
+        .select('id, content, created_at, thumbnail_url')
         .eq('author', userId!)
         .order('created_at', { ascending: false })
         .throwOnError()

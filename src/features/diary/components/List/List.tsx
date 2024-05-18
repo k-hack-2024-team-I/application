@@ -1,10 +1,10 @@
 import { Box, Center, Spinner, Text } from '@channel.io/bezier-react'
 import NiceModal from '@ebay/nice-modal-react'
-import { Suspense } from 'react'
 import Image from 'next/image'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { DiaryDetailModal } from '@/features/diary/components/DiaryDetail'
 import { useGetDiariesQueryObject } from '@/features/diary/queries/useGetDiariesQueryObject'
+import { SSRSafeSuspense } from '@/components/SSRSafeSuspense'
 
 interface ListProps {
   userId: string
@@ -45,7 +45,7 @@ function List({ userId }: ListProps) {
               height: '100%',
               aspectRatio: '1 / 1',
             }}
-            src="https://avatars.githubusercontent.com/u/1234?v=4"
+            src={diary.thumbnail_url || '/images/diary_placeholder.png'}
             width={300}
             height={300}
             alt=""
@@ -58,7 +58,7 @@ function List({ userId }: ListProps) {
 
 export default function SuspenseList(props: ListProps) {
   return (
-    <Suspense
+    <SSRSafeSuspense
       fallback={
         <Center height={128}>
           <Spinner color="txt-black-darker" />
@@ -66,6 +66,6 @@ export default function SuspenseList(props: ListProps) {
       }
     >
       <List {...props} />
-    </Suspense>
+    </SSRSafeSuspense>
   )
 }
