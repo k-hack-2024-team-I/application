@@ -85,6 +85,7 @@ Page.getLayout = (page: ReactNode) => (
   <PageLayout
     title="일기 작성하기"
     description="지금 이 상황을 기록해볼까요?"
+    backLink="/diary"
   >
     {page}
   </PageLayout>
