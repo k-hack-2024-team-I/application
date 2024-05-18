@@ -5,7 +5,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Text,
   TextArea,
   VStack,
   useToast,
@@ -13,7 +12,9 @@ import {
 import { useFormik } from 'formik'
 import { isEmpty } from 'lodash-es'
 import { useRouter } from 'next/router'
+import type { ReactNode } from 'react'
 import { useCreateDiaryMutation } from '@/features/diary/queries/useCreateDiaryMutation'
+import { PageLayout } from '@/layout/PageLayout'
 
 export default function Page() {
   const toast = useToast()
@@ -41,24 +42,6 @@ export default function Page() {
 
   return (
     <VStack height="100vh">
-      <VStack
-        spacing={4}
-        paddingHorizontal={16}
-        paddingTop={16}
-      >
-        <Text
-          typo="22"
-          bold
-        >
-          일기 작성하기
-        </Text>
-        <Text
-          typo="14"
-          color="txt-black-darker"
-        >
-          오늘의 일기를 작성해볼까요?
-        </Text>
-      </VStack>
       <form
         onSubmit={handleSubmit}
         style={{ flex: 1 }}
@@ -97,3 +80,12 @@ export default function Page() {
     </VStack>
   )
 }
+
+Page.getLayout = (page: ReactNode) => (
+  <PageLayout
+    title="일기 작성하기"
+    description="지금 이 상황을 기록해볼까요?"
+  >
+    {page}
+  </PageLayout>
+)
