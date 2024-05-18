@@ -19,9 +19,10 @@ export default async function handler(
       const { username, avatar_url, description, gender } =
         data.user.user_metadata
 
-      const avatarUrl = supabase.storage
+      const avatarUrl = await supabase.storage
         .from('avatars')
-        .getPublicUrl(avatar_url)
+        .createSignedUrl(avatar_url, 60 * 60)
+        .then((response) => response.data?.signedUrl ?? '')
 
       return res.status(200).json({
         avatarUrl,
