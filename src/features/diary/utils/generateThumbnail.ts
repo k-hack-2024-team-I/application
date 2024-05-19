@@ -11,7 +11,7 @@ const getPrompt = (
 - 어린아이가 크레용을 사용하여 그린것처럼 최대한 단순하지만 귀엽게 그려주세요.
 - 이 말을 하는 화자는 ${context.age}세이며, 성별은 ${UserGenderLabels[context.gender]}입니다.
 ${context.gptContext ? `- 또한, 이 말을 하는 화자는 '${context.gptContext?.replace('\n', ' ')}' 라고 자신의 모습을 표현하고 있습니다.` : ''}
-- 영어, 한국어를 포함해 어떠한 글자도 그림에 포함하지 말아주세요.
+- 어떠한 글자/문자도 그림에 포함하지 말아주세요.
 
 상황은 다음과 같습니다.
 ${content}
