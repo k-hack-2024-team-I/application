@@ -10,7 +10,7 @@ import {
   useToast,
 } from '@channel.io/bezier-react'
 import { useFormik } from 'formik'
-import { isEmpty } from 'lodash-es'
+import { isEmpty, noop } from 'lodash-es'
 import { useRouter } from 'next/router'
 import type { ReactNode } from 'react'
 import { useCreateDiaryMutation } from '@/features/diary/queries/useCreateDiaryMutation'
@@ -69,7 +69,7 @@ export default function Page() {
       >
         <ButtonGroup>
           <Button
-            onClick={submitForm}
+            onClick={isSubmitting ? noop : submitForm}
             disabled={isEmpty(values.content)}
             loading={isSubmitting}
             style={{ flex: 1 }}
