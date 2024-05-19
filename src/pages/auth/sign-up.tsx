@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ChangeEvent, ReactNode } from 'react'
 import { useRef } from 'react'
 import type { SelectRef } from '@channel.io/bezier-react'
 import {
@@ -34,7 +34,8 @@ export default function Page() {
     handleSubmit,
     submitForm,
     values,
-    handleChange,
+    validateField,
+    handleChange: handleFieldChange,
     setFieldValue,
     errors,
     isSubmitting,
@@ -47,6 +48,8 @@ export default function Page() {
       age: '',
       gender: '' as UserGender,
     },
+    validateOnChange: false,
+    validateOnBlur: true,
     validate: (values) => {
       const errors: Record<string, string> = {}
 
@@ -86,6 +89,10 @@ export default function Page() {
         errors.age = '올바른 형식의 나이가 아닙니다.'
       }
 
+      if (Number(values.age) <= 0) {
+        errors.age = '올바른 형식의 나이가 아닙니다.'
+      }
+
       if (!values.gender) {
         errors.gender = '성별을 선택해주세요.'
       }
@@ -118,6 +125,11 @@ export default function Page() {
       router.push(`/diary/${data.user.id}`)
     },
   })
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    validateField(e.target.name)
+    handleFieldChange(e)
+  }
 
   return (
     <VStack height="100vh">
