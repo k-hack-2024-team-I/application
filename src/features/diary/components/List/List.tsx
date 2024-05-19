@@ -37,7 +37,9 @@ function List({ userId }: ListProps) {
         <Box
           key={diary.id}
           as="button"
-          onClick={() => NiceModal.show(DiaryDetailModal, { userId })}
+          onClick={() =>
+            NiceModal.show(DiaryDetailModal, { userId, diaryId: diary.id })
+          }
         >
           <DiaryThumbnail
             style={{

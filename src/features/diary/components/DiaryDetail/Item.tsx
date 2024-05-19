@@ -33,7 +33,7 @@ export function Item({ diary, user }: ItemProps) {
 
   return (
     <>
-      <VStack>
+      <VStack id={`diary-${diary.id}`}>
         <HStack
           align="center"
           justify="between"

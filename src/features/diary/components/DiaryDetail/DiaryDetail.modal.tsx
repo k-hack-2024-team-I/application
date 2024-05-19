@@ -7,9 +7,10 @@ import DiaryDetailHeader from './DiaryDetailHeader'
 
 interface DiaryDetailModalProps {
   userId: string
+  diaryId?: string
 }
 
-function DiaryDetailModal({ userId }: DiaryDetailModalProps) {
+function DiaryDetailModal({ userId, diaryId }: DiaryDetailModalProps) {
   const { visible } = useModal()
 
   useEffect(() => {
@@ -33,7 +34,10 @@ function DiaryDetailModal({ userId }: DiaryDetailModalProps) {
           marginHorizontal="auto"
         >
           <DiaryDetailHeader userId={userId} />
-          <DiaryDetailList userId={userId} />
+          <DiaryDetailList
+            userId={userId}
+            diaryId={diaryId}
+          />
         </Box>
       </Box>
     </Overlay>
