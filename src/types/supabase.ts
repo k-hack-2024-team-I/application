@@ -17,6 +17,8 @@ export type Database = {
           id: string
           mood: string | null
           mood_score: number | null
+          music: string | null
+          thumbnail_alt: string | null
           thumbnail_url: string | null
         }
         Insert: {
@@ -26,6 +28,8 @@ export type Database = {
           id?: string
           mood?: string | null
           mood_score?: number | null
+          music?: string | null
+          thumbnail_alt?: string | null
           thumbnail_url?: string | null
         }
         Update: {
@@ -35,6 +39,8 @@ export type Database = {
           id?: string
           mood?: string | null
           mood_score?: number | null
+          music?: string | null
+          thumbnail_alt?: string | null
           thumbnail_url?: string | null
         }
         Relationships: []
