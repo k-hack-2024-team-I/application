@@ -1,17 +1,16 @@
 import type { ComponentProps } from 'react'
 import { Avatar as BaseAvatar } from '@channel.io/bezier-react'
-import { useSignedAvatarUrlQuery } from './useSignedAvatarURLQuery'
 
 export function Avatar({
   avatarUrl: key,
   children,
   ...props
 }: ComponentProps<typeof BaseAvatar>) {
-  const { data: signedAvatarUrl } = useSignedAvatarUrlQuery(key)
+  const prefix = `https://hfokuhoievsxeyuxtzkv.supabase.co/storage/v1/object/public/avatars`
 
   return (
     <BaseAvatar
-      avatarUrl={signedAvatarUrl ?? ''}
+      avatarUrl={`${prefix}/${key}`}
       {...props}
     >
       {children}
