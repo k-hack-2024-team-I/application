@@ -21,6 +21,7 @@ interface ItemProps {
     content: string | null
     created_at: string | null
     thumbnail_url: string | null
+    music: string | null
   }
   user: UserMetadata
 }
@@ -104,9 +105,16 @@ export function Item({ diary, user }: ItemProps) {
           >
             {user.username}
           </Text>
-          <Box>
+          <VStack spacing={8}>
+            {diary.music && (
+              <audio
+                src={diary.music}
+                controls
+                style={{ width: '100%' }}
+              />
+            )}
             <Text style={{ whiteSpace: 'pre-wrap' }}>{diary.content}</Text>
-          </Box>
+          </VStack>
           <Text
             typo="14"
             color="txt-black-dark"

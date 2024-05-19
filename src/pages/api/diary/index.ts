@@ -3,6 +3,7 @@ import { supabase } from '@/supabase/server'
 import { generateThumbnail } from '@/features/diary/utils/generateThumbnail'
 import type { UserGender } from '@/features/user/constants/constants'
 import { getUserMood } from '@/features/diary/utils/getUserMood'
+import { generateMusic } from '@/features/diary/utils/generateMusic'
 
 export const config = {
   maxDuration: 300,
@@ -42,15 +43,18 @@ export default async function handler(
         content
       )
 
+      const { audio_url } = await generateMusic(mood!)
+
       const { data, error } = await supabase
         .from('diary')
         .insert({
-          mood,
           content,
           thumbnail_url: thumbnailUrl,
           thumbnail_alt: alt,
+          mood: mood!,
           mood_score: moodScore,
           author: response.id,
+          music: audio_url,
         })
         .select('id')
         .single()
