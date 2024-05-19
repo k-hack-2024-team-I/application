@@ -32,11 +32,17 @@ export default function Page() {
       content: '',
     },
     onSubmit: async (value) => {
-      await mutateAsync(value.content)
-      toast.addToast('일기가 성공적으로 저장되었습니다.', {
-        appearance: 'success',
-      })
-      router.push('/diary')
+      try {
+        await mutateAsync(value.content)
+        toast.addToast('일기가 성공적으로 저장되었습니다.', {
+          appearance: 'success',
+        })
+        router.push('/diary')
+      } catch {
+        toast.addToast('일기를 작성하는데 실패했습니다.', {
+          appearance: 'error',
+        })
+      }
     },
   })
 
