@@ -1,4 +1,4 @@
-import { MenuIcon, NoteWritingIcon } from '@channel.io/bezier-icons'
+import { NoteWritingIcon } from '@channel.io/bezier-icons'
 import {
   HStack,
   VStack,
@@ -50,7 +50,7 @@ export default function Page({
           typo="24"
           bold
         >
-          Diary
+          AIary
         </Text>
 
         <ButtonGroup>
@@ -65,12 +65,6 @@ export default function Page({
               styleVariant="tertiary"
             />
           </Link>
-          <Button
-            size="l"
-            leftContent={MenuIcon}
-            colorVariant="monochrome-dark"
-            styleVariant="tertiary"
-          />
         </ButtonGroup>
       </HStack>
 

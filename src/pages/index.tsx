@@ -16,7 +16,7 @@ export default function Page() {
           typo="24"
           bold
         >
-          Diary
+          AIary
         </Text>
         <Text color="txt-black-darker">쉽고 재미있게 일상을 기록하세요</Text>
 

@@ -133,7 +133,7 @@ export function MoodChart({ userId, endDate, limit = 10 }: MoodChartProps) {
                   textAnchor={x > cx ? 'start' : 'end'}
                   dominantBaseline="central"
                 >
-                  {`${moodDistribution[index].name} ${percent.toFixed(2) * 100}%`}
+                  {`${moodDistribution[index].name} ${(percent * 100).toFixed(2)}%`}
                 </text>
               )
             }}

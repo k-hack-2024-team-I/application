@@ -79,7 +79,7 @@ export default function Page() {
             typo="24"
             bold
           >
-            Diary
+            AIary
           </Text>
           <Text color="txt-black-darker">다시 만나 반가워요!</Text>
 

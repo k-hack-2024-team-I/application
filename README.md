@@ -1,4 +1,4 @@
-# diary-application (가제)
+# aiary
 
 ## 개발 환경 요구사항
 
