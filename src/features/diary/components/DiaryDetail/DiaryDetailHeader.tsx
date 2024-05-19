@@ -2,6 +2,7 @@ import { ChevronLeftIcon } from '@channel.io/bezier-icons'
 import { HStack, Button, VStack, Text, Box } from '@channel.io/bezier-react'
 import { useModal } from '@ebay/nice-modal-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { enableBodyScroll } from 'body-scroll-lock'
 import { SSRSafeSuspense } from '@/components/SSRSafeSuspense'
 import { useGetUserQueryObject } from '@/features/user/queries/useGetUserQueryObject'
 
@@ -32,7 +33,10 @@ export function DiaryDetailHeader({ userId }: DiaryDetailHeaderProps) {
         leftContent={ChevronLeftIcon}
         colorVariant="monochrome-dark"
         styleVariant="tertiary"
-        onClick={hide}
+        onClick={() => {
+          hide()
+          enableBodyScroll(document.body)
+        }}
       />
 
       <VStack align="center">
@@ -70,7 +74,10 @@ export default function SuspenseDiaryDetailHeader(
             leftContent={ChevronLeftIcon}
             colorVariant="monochrome-dark"
             styleVariant="tertiary"
-            onClick={hide}
+            onClick={() => {
+              hide()
+              enableBodyScroll(document.body)
+            }}
           />
         </Box>
       }
