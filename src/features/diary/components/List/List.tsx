@@ -50,6 +50,8 @@ function List({ userId }: ListProps) {
             imageKey={diary.thumbnail_url || '/images/diary_placeholder.png'}
             width={300}
             height={300}
+            quality={50}
+            loading="lazy"
             alt=""
           />
         </Box>
