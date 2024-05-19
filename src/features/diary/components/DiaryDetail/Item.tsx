@@ -12,6 +12,7 @@ import {
 } from '@channel.io/bezier-react'
 import type { UserMetadata } from '@supabase/supabase-js'
 import { useRef, useState } from 'react'
+import { useModal } from '@ebay/nice-modal-react'
 import { DiaryThumbnail } from '@/features/diary/components/DiaryThumbnail'
 import { useDeleteDiaryMutation } from '@/features/diary/queries/useDeleteDiaryMutation'
 
@@ -27,6 +28,7 @@ interface ItemProps {
 }
 
 export function Item({ diary, user }: ItemProps) {
+  const { hide } = useModal()
   const { mutateAsync } = useDeleteDiaryMutation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -42,8 +44,10 @@ export function Item({ diary, user }: ItemProps) {
           paddingHorizontal={16}
         >
           <HStack
+            as="button"
             align="center"
             spacing={16}
+            onClick={hide}
           >
             <Avatar
               name="user-profile-pic"

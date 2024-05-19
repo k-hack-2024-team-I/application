@@ -2,6 +2,7 @@ import { Box, Overlay } from '@channel.io/bezier-react'
 import NiceModal, { useModal } from '@ebay/nice-modal-react'
 import { useEffect } from 'react'
 import { disableBodyScroll } from 'body-scroll-lock'
+import { useRouter } from 'next/router'
 import DiaryDetailList from './DiaryDetailList'
 import DiaryDetailHeader from './DiaryDetailHeader'
 
@@ -11,7 +12,18 @@ interface DiaryDetailModalProps {
 }
 
 function DiaryDetailModal({ userId, diaryId }: DiaryDetailModalProps) {
-  const { visible } = useModal()
+  const { visible, hide } = useModal()
+  const { beforePopState } = useRouter()
+
+  useEffect(
+    function closeModalBeforePopState() {
+      beforePopState(() => {
+        hide()
+        return false
+      })
+    },
+    [hide, beforePopState]
+  )
 
   useEffect(() => {
     disableBodyScroll(document.body)

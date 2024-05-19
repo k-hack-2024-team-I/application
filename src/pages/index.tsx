@@ -38,7 +38,7 @@ export default function Page() {
           legacyBehavior
         >
           <Button
-            size="xs"
+            size="s"
             colorVariant="monochrome-dark"
             styleVariant="tertiary"
             text="이미 일기를 만들었나요?"

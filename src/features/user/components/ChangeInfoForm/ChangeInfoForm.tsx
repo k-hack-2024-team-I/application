@@ -19,7 +19,7 @@ import {
 import { useFormik } from 'formik'
 import { useRef } from 'react'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import assert from 'assert'
+import { useRouter } from 'next/router'
 import {
   UserGender,
   UserGenderLabels,
@@ -31,6 +31,7 @@ import { useGetThisUserQueryObject } from '@/features/user/queries/useGetThisUse
 import { AvatarUploader } from '@/components/AvatarUploader'
 
 export function ChangeInfoForm() {
+  const router = useRouter()
   const { mutateAsync } = useUpdateUserInfoMutation()
   const { data } = useSuspenseQuery(useGetThisUserQueryObject())
 
@@ -64,8 +65,8 @@ export function ChangeInfoForm() {
 
       return errors
     },
-    onSubmit: async (value, { resetForm }) => {
-      const user = await mutateAsync({
+    onSubmit: async (value) => {
+      await mutateAsync({
         avatarUrl: value.avatarUrl,
         age: value.age,
         description: value.description,
@@ -73,17 +74,7 @@ export function ChangeInfoForm() {
         gender: value.gender,
         gptContext: value.gptContext,
       })
-      assert(user, 'user should be defined')
-      resetForm({
-        values: {
-          avatarUrl: user.user_metadata.avatar_url,
-          username: user.user_metadata.username,
-          description: user.user_metadata.description,
-          age: user.user_metadata.age,
-          gender: user.user_metadata.gender,
-          gptContext: user.user_metadata.gpt_context,
-        },
-      })
+      router.push('/diary')
     },
   })
 
