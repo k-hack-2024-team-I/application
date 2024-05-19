@@ -47,7 +47,6 @@ export default function Page() {
       age: '',
       gender: '' as UserGender,
     },
-    validateOnChange: false,
     validate: (values) => {
       const errors: Record<string, string> = {}
 
